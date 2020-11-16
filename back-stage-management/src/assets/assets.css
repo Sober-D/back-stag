@@ -66,6 +66,19 @@ input {
     padding: 0;
 }
 
+.el-breadcrumb {
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+.el-card {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+}
+
+.el-table{
+    margin-top: 20px;
+}
+
 address,
 cite,
 dfn,
@@ -95,7 +108,7 @@ h5,
 h6,
 th {
     font-size: 100%;
-    font-weight: normal;
+    /* font-weight: normal; */
 }
 
 button,
