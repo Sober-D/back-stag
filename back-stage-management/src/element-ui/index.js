@@ -20,7 +20,14 @@ import
   Row,
   Col,
   Table,
-  TableColumn
+  TableColumn,
+  Switch,
+  Tooltip,
+  Pagination,
+  Dialog,
+  Select,
+  Option,
+  Popconfirm
 } 
 from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -44,4 +51,11 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Switch);
+Vue.use(Tooltip);
+Vue.use(Pagination);
+Vue.use(Dialog);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Popconfirm);
 

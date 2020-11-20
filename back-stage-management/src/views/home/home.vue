@@ -4,7 +4,7 @@
     <el-header>
       <div class="header_left">
         <img src="@/assets/dark_house.jpg" alt="" />
-        <span>电商后台管理系统</span>
+        <span>后台管理系统</span>
       </div>
       <div class="header_right">
         <el-button @click="signOut" size="small" type="info">退出</el-button>
@@ -17,7 +17,7 @@
           :collapse-transition='false'
           :collapse='menuShow'
           :unique-opened='true'
-          :default-active='activePath'
+          :default-active='$route.path'
           class="el-menu-vertical-demo"
           background-color="#333744"
           text-color="#fff"
@@ -35,7 +35,7 @@
             </template>
             <!-- 一级菜单模板区域结束 -->
             <!-- 二级菜单部分开始 -->
-            <el-menu-item @click="togglePath('/' + v.path)" v-for="v in item.children" :key="v.id" :index="'/' + v.path">
+            <el-menu-item v-for="v in item.children" :key="v.id" :index="'/' + v.path">
               <!-- 二级菜单模板区域开始 -->
               <template slot="title">
                 <!-- 二级菜单图标 -->
@@ -110,16 +110,10 @@ export default {
     toggleShow(){
         this.menuShow = !this.menuShow;
     },
-    // menu二级菜单高亮问题
-    togglePath(path){
-      sessionStorage.setItem('path',path);
-    },
   },
   created() {
     // 调用获取菜单栏数据方法
     this.getMenuList();
-    // 解决menu二级菜单高亮问题方法
-    this.activePath = sessionStorage.getItem('path');
   },
   mounted() {},
 };

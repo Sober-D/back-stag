@@ -21,7 +21,6 @@
             <el-button @click="loginForm" size='small' type="primary">登录</el-button>
             <el-button @click="resetForm" size='small' type="info">重置</el-button>
           </el-form-item>
-           
         </el-form>
         <!-- 登录表单部分结束 -->
       </div>
@@ -54,7 +53,7 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
         ]
-      }
+      },
     };
   },  
   computed: {},
