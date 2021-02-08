@@ -22,7 +22,7 @@
       </el-row>
       <!-- 搜索框部分结束 -->
       <!-- 用户列表部分开始 -->
-      <el-table :data='userList' border stripe>
+      <el-table :data='userList' border>
         <el-table-column label='#' type='index'></el-table-column>
         <el-table-column label='姓名' prop='username'></el-table-column>
         <el-table-column label='邮箱' prop='email'></el-table-column>
@@ -33,26 +33,26 @@
             <el-switch @change="userState(scope.row)" v-model="scope.row.mg_state"></el-switch>
           </template>
         </el-table-column>
-        <el-table-column label='操作'>
+        <el-table-column label='操作' width='300'>
           <template slot-scope="scope">
             <!-- 修改按钮 -->
-            <el-tooltip :enterable='false' class="item" effect="dark" content="修改" placement="top">
-              <el-button @click="editUser(scope.row.id)" type='primary' size='mini' icon='el-icon-edit'></el-button>
-            </el-tooltip>
+            <!-- <el-tooltip :enterable='false' class="item" effect="dark" content="修改" placement="top"> -->
+              <el-button @click="editUser(scope.row.id)" type='primary' size='mini' icon='el-icon-edit'>修改</el-button>
+            <!-- </el-tooltip> -->
             <!-- 删除按钮 -->
-            <el-tooltip :enterable='false' class="item" effect="dark" content="删除" placement="top">
-              <el-button @click="delUser(scope.row.id)" type='danger' size='mini' icon='el-icon-delete'></el-button>
-            </el-tooltip>
+            <!-- <el-tooltip :enterable='false' class="item" effect="dark" content="删除" placement="top"> -->
+              <el-button @click="delUser(scope.row.id)" type='danger' size='mini' icon='el-icon-delete'>删除</el-button>
+            <!-- </el-tooltip> -->
             <!-- 设置按钮 -->
-            <el-tooltip :enterable='false' class="item" effect="dark" content="分配角色" placement="top">
-              <el-button type='warning' size='mini' icon='el-icon-setting'></el-button>
-            </el-tooltip>
+            <!-- <el-tooltip :enterable='false' class="item" effect="dark" content="分配角色" placement="top"> -->
+              <el-button type='warning' size='mini' icon='el-icon-setting'>分配角色</el-button>
+            <!-- </el-tooltip> -->
           </template>
         </el-table-column>
       </el-table>
       <!-- 用户列表部分结束 -->
       <!-- 分页部分开始 -->
-       <el-pagination
+      <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="params.pagenum"
@@ -106,7 +106,7 @@ export default {
       if(res.meta.status!==200) return this.$message.error(res.meta.msg);
       this.userList = res.data.users;
       this.total = res.data.total;
-      console.log(res,'用户列表数据');
+      // console.log(res,'用户列表数据');
     },
     // 监听pageSize改变的事件
     handleSizeChange(newSize){
@@ -138,6 +138,7 @@ export default {
     },
     // 点击取消关闭添加用户弹框方法
     close(){
+      this.getUserList();
       this.dialogVisible = false;
     },
     // 点击修改弹框中取消按钮隐藏修改弹框

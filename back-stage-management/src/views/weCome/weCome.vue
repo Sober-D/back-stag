@@ -1,27 +1,120 @@
 <template>
-  <div id="App">
-      <h3>Wecome</h3>
+  <div class="white-body-view">
+    <el-button size="samall">试题分类</el-button>
+    <!-- 地点弹窗 -->
+    <place-dialog ref="placeDialog" @addData="addData" @editData="editData" />
   </div>
 </template>
-
 <script>
+// import CustomTree from "./tree";
+import PlaceDialog from "./PlaceDialog";
 export default {
-  components: {},
+  components: {
+    // CustomTree,
+    PlaceDialog,
+  },
+
   data() {
-    return {};
+    return {
+      treeData: [],
+      treeExpandAll: false,
+      treeNodeKey: "id",
+    };
   },
-  computed: {},
-  methods: {
-    togglePaths(){
-      sessionStorage.setItem('path','/home');
-      // window.location.reload();
-    }
-  },
+
   created() {
-    this.togglePaths();
+    this.initTreeData();
   },
-  mounted() {},
+
+  methods: {
+    // 初始化列表
+    initTreeData() {
+      this.treeData = [
+        {
+          children: [
+            {
+              children: [],
+              name: "分类1",
+              desc: "这是教学楼1楼",
+              parentId: "1",
+              id: "2",
+            },
+            {
+              children: [],
+              name: "分类2",
+              desc: "这是教学楼1楼",
+              parentId: "1",
+              id: "3",
+            },
+            {
+              children: [],
+              name: "分类3",
+              desc: "这是教学楼3楼",
+              parentId: "1",
+              id: "4",
+            },
+          ],
+          name: "试题分类",
+          parentId: "",
+          id: "1",
+        }
+      ];
+    },
+
+    // 添加新记录
+    addNewRecord() {
+      this.$refs.placeDialog.openDialog(false);
+    },
+
+    // 判断数组层数
+
+    // 新增表单数据
+    addData(data) {
+      // 新增树节点
+      this.$refs.customTree.treeAddItem(data);
+    },
+
+    // 修改表单数据
+    editData(data) {
+      // 修改树节点
+      this.$refs.customTree.treeEditItem(data);
+    },
+
+    // 增加树节点
+    addTreeItem(data) {
+      // 打开地点弹窗，设置默认父级节点
+      this.$refs.placeDialog.openDialog(false, data.id);
+    },
+
+    // 删除树节点
+    deleteTreeItem(data) {
+      this.$confirm("确定删除吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 删除树节点
+          this.$refs.customTree.treeDeleteItem(data);
+          // 提示
+          this.$message({
+            type: "success",
+            message: "删除成功!",
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
+
+    // 修改树节点
+    editTreeItem(data) {
+      // 打开地点编辑弹窗
+      this.$refs.placeDialog.openDialog(true, data.parentId, data);
+    },
+  },
 };
 </script>
-<style lang='less' scoped>
-</style>

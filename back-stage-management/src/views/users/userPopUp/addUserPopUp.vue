@@ -105,6 +105,7 @@ export default {
         }
         this.$message.success(res.meta.msg);
         console.log(res,'添加用户');
+        this.addForm = '';
         this.$emit('addUsers',this.addForm);
       })
     },
@@ -115,6 +116,7 @@ export default {
       .catch(_ => {});
     },
     close() {
+      this.addForm = '';
       this.$emit('close',this.dialogVisible);
     },
   },

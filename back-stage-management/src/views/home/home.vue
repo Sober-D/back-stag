@@ -1,7 +1,7 @@
 <template>
   <!-- 列表头部开始 -->
   <el-container class="box">
-    <el-header>
+    <el-header height='60px'>
       <div class="header_left">
         <img src="@/assets/dark_house.jpg" alt="" />
         <span>后台管理系统</span>
@@ -50,8 +50,8 @@
           <!-- 一级菜单部分结束 -->
         </el-menu>
       </el-aside>
-      <el-main>
-          <router-view></router-view>
+      <el-main :style="{left: menuShow ? '64px' : '200px'}">
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -63,16 +63,15 @@ export default {
   components: {},
   data() {
     return {
-        menuList:{}, // 左侧列表数据
-        iconList:{
-            '125': 'el-icon-user-solid',
-            '103': 'el-icon-platform-eleme',
-            '101': 'el-icon-s-goods',
-            '102': 'el-icon-s-order',
-            '145': 'el-icon-s-platform'
-        }, //一级菜单图标列表
-        menuShow: false, // menu菜单是否折叠
-        activePath: '', // 左侧菜单选项高亮
+      menuList:{}, // 左侧列表数据
+      iconList:{
+          '125': 'el-icon-user-solid',
+          '103': 'el-icon-platform-eleme',
+          '101': 'el-icon-s-goods',
+          '102': 'el-icon-s-order',
+          '145': 'el-icon-s-platform'
+      }, //一级菜单图标列表
+      menuShow: false, // menu菜单是否折叠
     };
   },
   computed: {},
@@ -120,10 +119,11 @@ export default {
 </script>
 <style lang='less' scoped>
 .box {
-  min-height: 100vh;
+  height: 100%;
 }
 // 头部样式开始
 .el-header {
+  width: 100%;
   background: #373d41;
   display: flex;
   justify-content: space-between;
@@ -152,6 +152,7 @@ export default {
 .el-aside {
   background: #333744;
   color: white;
+  position: relative;
   // 顶部切换样式开始
   .toggle{
       width: 100%;
@@ -174,6 +175,10 @@ export default {
 //中间样式开始
 .el-main {
   background: #EAEDF1;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
 }
 //中间样式结束
 </style>

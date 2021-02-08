@@ -68,7 +68,7 @@ export default {
         if(valid){
           this.$axios.post('login',this.form).then(res => {
             if(res.data.meta.msg=='登录成功'){
-              console.log(res,'login');
+              // console.log(res,'login');
               this.$message.success(res.data.meta.msg);
               sessionStorage.setItem('token', res.data.data.token);
               this.$router.push('/home');

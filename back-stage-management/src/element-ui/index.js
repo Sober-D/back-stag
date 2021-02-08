@@ -27,7 +27,13 @@ import
   Dialog,
   Select,
   Option,
-  Popconfirm
+  Popconfirm,
+  Tabs,
+  TabPane,
+  Tag,
+  Tree,
+  Upload,
+  Progress
 } 
 from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -58,4 +64,10 @@ Vue.use(Dialog);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Popconfirm);
+Vue.use(Tabs);
+Vue.use(TabPane);
+Vue.use(Tag);
+Vue.use(Tree);
+Vue.use(Upload);
+Vue.use(Progress);
 

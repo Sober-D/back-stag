@@ -23,6 +23,12 @@ const routes = [
       {
         path: '/users',
         name: 'users',
+        meta: [
+          {
+            title: '用户管理',
+            
+          }
+        ],
         component: () => import('@/views/users/users.vue')
       },
       {
